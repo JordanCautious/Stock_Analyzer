@@ -4,7 +4,7 @@ import datetime as dt
 
 # Hello! Welcome to my first project!
 
-st.header("The Stock Price App!")
+st.header("The Stock Analyzer App!")
 
 symbol = st.text_input("What ticker symbol would you like to analyze?: ", value="MSFT").upper()
 

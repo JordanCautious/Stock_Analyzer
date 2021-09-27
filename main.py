@@ -4,6 +4,13 @@ import datetime as dt
 
 # Hello! Welcome to my first project!
 
+st.set_page_config(
+     page_title="Jordan's Stock Analyzer",
+     #page_icon="🧊",
+     layout="wide",
+     #initial_sidebar_state="expanded",
+)
+
 st.header("The Stock Analyzer App!")
 
 st.markdown("""

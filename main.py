@@ -6,6 +6,13 @@ import datetime as dt
 
 st.header("The Stock Analyzer App!")
 
+st.markdown("""
+Have a stock you want to analyze? Input the ticker symbol below!
+
+---
+
+""")
+
 symbol = st.text_input("What ticker symbol would you like to analyze?: ", value="MSFT").upper()
 
 # This block of code will return the information about a stock. If the ticker symbol doesn't exist or can't
@@ -28,7 +35,7 @@ try:
         price = (ticker.get_info()["currentPrice"])
         recc = (ticker.get_info()["recommendationKey"])
 
-        st.subheader(f"The current price of {symbol} is {price}.")
+        st.subheader(f"The current price of {symbol} is ${price}.")
         st.subheader(f"It's current recommendation is {recc}!")
 
         col1, col2 = st.columns(2)

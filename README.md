@@ -2,7 +2,7 @@
 
 Welcome to my first Data Analysis project!
 
-This is the code for the Web App that can found below:
+This code relates to the Web App that can be found below:
 
 <a href="https://share.streamlit.io/jordancautious/stock_analyzer/main.py
 ">Web App</a>

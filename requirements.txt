@@ -1,0 +1,2 @@
+yfinance~=0.1.63
+streamlit~=0.89.0

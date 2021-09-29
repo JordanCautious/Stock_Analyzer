@@ -5,9 +5,9 @@ import datetime as dt
 
 st.set_page_config(
      page_title="Jordan's Stock Analyzer",
-     #page_icon="🧊",
+     # page_icon="🧊",
      layout="wide",
-     #initial_sidebar_state="expanded",
+     # initial_sidebar_state="expanded",
 )
 
 st.header("The Stock Analyzer App!")
@@ -39,17 +39,10 @@ try:
         beta = ticker.info["beta"]
         market_cap = ticker.get_info()["marketCap"]
 
-        # To overcome the error, if a company doesn't pay out any dividends, it will simply return zero.
-        try:
-            dividend = (ticker.dividends[-1])
-        except IndexError:
-            dividend = 0
-
         # This chunk of code uses the variables we previously created above.
         st.write(ticker_name)
         st.markdown(f"**{symbol}** is in the '{sector}' sector and '{industry}' industry.")
         st.markdown(f"It has a **beta** of {beta} and a **market cap** of ${market_cap:,}!")
-        st.markdown(f"Current dividends are: ${dividend}.")
         website = ticker.get_info()["website"]
         with st.expander("Associated Website"):
             st.write(website)
@@ -69,7 +62,7 @@ try:
         seven_days = ticker.history(period="1h", start=(dt.datetime.now().date() - dt.timedelta(days=7)))
 
         # This code helps generate the 5 previous closing prices.
-        st.subheader(f"Previous 5 closing prices for {ticker_name}:")
+        st.subheader(f"Previous 5 closing prices for {ticker_name} (DESC):")
         for i in seven_days.Close:
             st.write(f"${round(i,2)}")
 
@@ -94,7 +87,7 @@ try:
         ticker_history = ticker.history(period="1d", start=start, end=end)
 
         # This code block is dependent upon the number of parameters created.
-        if selector == True:
+        if selector:
             st.line_chart(ticker_history.Volume)
         else:
             st.write("Awaiting input...")

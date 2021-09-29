@@ -62,9 +62,9 @@ try:
         seven_days = ticker.history(period="1h", start=(dt.datetime.now().date() - dt.timedelta(days=7)))
 
         # This code helps generate the 5 previous closing prices.
-        st.subheader(f"Previous 5 closing prices for {ticker_name} (DESC):")
+        st.markdown(f"#### Previous 5 closing prices for {ticker_name} (DESC):")
         for i in seven_days.Close:
-            st.write(f"${round(i,2)}")
+            st.markdown(f"##### ${round(i,2)}")
 
         st.markdown("""
         ---

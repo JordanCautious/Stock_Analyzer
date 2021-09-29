@@ -51,8 +51,8 @@ try:
         price = (ticker.get_info()["currentPrice"])
         recc = (ticker.get_info()["recommendationKey"])
 
-        st.subheader(f"{symbol} has a current price of: ${round(price,2)}")
-        st.markdown(f"### Recommendation: {recc.upper()}!")
+        st.markdown(f"##### {symbol} has a current price of: ${round(price,2)}")
+        st.markdown(f"##### Recommendation: {recc.upper()}!")
 
         st.markdown("""
         ---

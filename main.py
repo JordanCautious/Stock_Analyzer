@@ -64,7 +64,7 @@ try:
         # This code helps generate the 5 previous closing prices.
         st.markdown(f"#### Previous 5 closing prices for {ticker_name} (DESC):")
         for i in seven_days.Close:
-            st.markdown(f"##### ${round(i,2)}")
+            st.markdown(f"###### ${round(i,2)}")
 
         st.markdown("""
         ---

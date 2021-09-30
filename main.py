@@ -1,6 +1,7 @@
 import yfinance as yf
 import streamlit as st
 import datetime as dt
+
 # Hello! Welcome to my first project! Ideally, this code will change over time as I learn more about Python!
 
 st.set_page_config(
@@ -62,7 +63,7 @@ try:
         seven_days = ticker.history(period="1h", start=(dt.datetime.now().date() - dt.timedelta(days=7)))
 
         # This code helps generate the 5 previous closing prices.
-        st.markdown(f"#### Previous 5 closing prices for {ticker_name} (DESC):")
+        st.markdown(f"##### Previous 5 closing prices for {ticker_name} (DESC):")
         for i in seven_days.Close:
             st.markdown(f"###### ${round(i,2)}")
 
@@ -74,23 +75,35 @@ try:
         col1, col2 = st.columns(2)
 
         with col1:
-            start = st.date_input("What is the start date?: ",
+            start = st.date_input("What is the start date for Volume?: ",
                                   value=(dt.datetime.now().date() - dt.timedelta(days=30)))
 
         with col2:
-            end = st.date_input("What is the end date?: ")
+            end = st.date_input("What is the end date for Volume?: ")
 
         # This block of code is ideally for a variety of parameters.
-        st.write("Choose a parameter:")
-        selector = st.checkbox(label="Volume")
+        col3, col4 = st.columns(2)
+
+        selector = st.selectbox(label="Choose a parameter:", options=["Stock Price", "Volume"])
 
         ticker_history = ticker.history(period="1d", start=start, end=end)
 
         # This code block is dependent upon the number of parameters created.
-        if selector:
+        if selector == "Volume":
             st.line_chart(ticker_history.Volume)
+        elif selector == "Stock Price":
+            # Returns the value of a stock on a certain day
+            start1 = st.date_input("Find out the price of the stock on a certain day:")
+            st.write(f"You chose {start1}!")
+            # This code basically returns the stock price from a specified day.
+            try:
+                single_price = (ticker.history(period="1d", start=start1, end=(start1 + dt.timedelta(days=1))).Close[0])
+                st.subheader(f"The price was: ${round(single_price, 2)}")
+            except IndexError:
+                st.write("There seemed to be an error in calculating this. Please choose a different date")
         else:
             st.write("Awaiting input...")
+
     else:
         "Eagerly awaiting Input..."
 except FileNotFoundError:
